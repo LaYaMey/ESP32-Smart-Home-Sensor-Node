@@ -10,8 +10,9 @@ A ESP32-based smart home sensor client with sensors, OLED display, NTP time sync
 - **Display**: SSD1306 OLED display (I2C)
 - **Analog Input**: Soil moisture sensor (analog output)
 
-![Image of my first Client Node Board prototype on a stripboard](Client_Node_Board.jpeg)
-My prototype board on a stripboard.
+<img src="Client_Node_Board.jpeg" alt="Image of my first Client Node Board prototype on a stripboard" width="400" style="transform: rotate(-90deg);">
+
+<p>My prototype board on a stripboard.</p>
 
 ### Connections
 ```
