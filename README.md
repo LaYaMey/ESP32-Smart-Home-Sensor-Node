@@ -12,7 +12,7 @@ A ESP32-based smart home sensor client with sensors, OLED display, NTP time sync
 
 <img src="Client_Node_Board.jpeg" alt="Image of my first Client Node Board prototype on a stripboard" width="400">
 
-<p>My prototype board on a stripboard.</p>
+<p>My prototype on a stripboard.</p>
 
 ### Connections
 ```
