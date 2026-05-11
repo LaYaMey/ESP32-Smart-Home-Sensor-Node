@@ -12,6 +12,22 @@ void setApiConfig(const ApiConfig& config) {
   apiConfig = config;
 }
 
+IPAddress mDNSResolveIP(const char* domain_name) {
+  IPAddress server_ip = IPAddress(0,0,0,0);
+
+  int attempts = 3;
+  displayMessage("Resolving mDNS to IP");
+  while (attempts > 0){
+    attempts--;
+    WiFi.hostByName(domain_name, server_ip);
+    if (server_ip != IPAddress(0,0,0,0)){
+      return server_ip;
+    }
+  }
+  displayMessage("mDNS resolution failed");
+  return server_ip;
+}
+
 bool postSensorData(float value, const char* measurement, const char* extraTagKey, const char* extraTagValue) {
   if (WiFi.status() != WL_CONNECTED) {
     signalError(WIFI_ERROR);
