@@ -10,7 +10,7 @@ static ApiConfig apiConfig;
 
 void setApiConfig(const ApiConfig& config) {
   apiConfig = config;
-  displayMessage("API configured" + apiConfig.serverIP);
+  displayMessage("Server IP: " + apiConfig.serverIP);
 }
 
 IPAddress mDNSResolveIP(const String& domain_name) {
