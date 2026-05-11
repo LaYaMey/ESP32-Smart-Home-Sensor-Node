@@ -6,10 +6,7 @@
 #include "error_handler.h"
 #include "display_handler.h"
 
-static ApiConfig apiConfig = {
-  "http://192.168.178.59:8000", // FastAPI server
-  "livingroom"                  // Default room tag 
-};
+static ApiConfig apiConfig;
 
 void setApiConfig(const ApiConfig& config) {
   apiConfig = config;
