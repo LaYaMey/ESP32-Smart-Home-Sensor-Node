@@ -26,7 +26,7 @@ bool checkWiFiConnected() {
 }
 
 void waitForWiFi(unsigned long* startWifiAttempt) {
-  while (!checkWiFiConnected() && millis() - *startWifiAttempt < 15000) {
+  while (!checkWiFiConnected() && millis() - *startWifiAttempt < 150000) {
     displayMessage("Waiting for WiFi");
     delay(500);
   }
