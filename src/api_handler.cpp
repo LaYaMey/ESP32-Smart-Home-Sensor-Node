@@ -10,16 +10,17 @@ static ApiConfig apiConfig;
 
 void setApiConfig(const ApiConfig& config) {
   apiConfig = config;
+  displayMessage("API configured" + apiConfig.serverIP);
 }
 
-IPAddress mDNSResolveIP(const char* domain_name) {
+IPAddress mDNSResolveIP(const String& domain_name) {
   IPAddress server_ip = IPAddress(0,0,0,0);
 
   int attempts = 3;
   displayMessage("Resolving mDNS to IP");
   while (attempts > 0){
     attempts--;
-    WiFi.hostByName(domain_name, server_ip);
+    WiFi.hostByName(domain_name.c_str(), server_ip);
     if (server_ip != IPAddress(0,0,0,0)){
       return server_ip;
     }
@@ -28,7 +29,7 @@ IPAddress mDNSResolveIP(const char* domain_name) {
   return server_ip;
 }
 
-bool postSensorData(float value, const char* measurement, const char* extraTagKey, const char* extraTagValue) {
+bool postSensorData(float value, const String& measurement, const String& extraTagKey, const String&  extraTagValue) {
   if (WiFi.status() != WL_CONNECTED) {
     signalError(WIFI_ERROR);
     displayMessage("WiFi Error");
@@ -49,7 +50,7 @@ bool postSensorData(float value, const char* measurement, const char* extraTagKe
   JsonObject tags = json.createNestedObject("tags");
   tags["sensorname"] = apiConfig.sensorId;
 
-  if (extraTagKey && extraTagValue) {
+  if (!extraTagKey.isEmpty() && !extraTagValue.isEmpty()) {
     tags[extraTagKey] = extraTagValue;
   }
 
@@ -64,7 +65,7 @@ bool postSensorData(float value, const char* measurement, const char* extraTagKe
     //displayMessage("API Error");
 
     String msg = "HTTP " + String(responseCode);
-    displayMessage(msg.c_str());
+    displayMessage(msg);
     delay(5000);
     return false;
   }

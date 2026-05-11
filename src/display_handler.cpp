@@ -71,7 +71,7 @@ void displayValues(float humidity, float temp) {
   display.display();
 }
 
-void displayMessage(const char* message) {
+void displayMessage(const String& message) {
   displayOn();
   display.clearDisplay();
   display.setTextSize(2);

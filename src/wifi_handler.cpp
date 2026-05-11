@@ -6,8 +6,9 @@
 
 #include "secrets.h"
 
-const char* ssid = WIFI_SSID;
-const char* password = WIFI_PASSWORD;
+// Credentials defined in secrets.h
+const String ssid = WIFI_SSID;
+const String password = WIFI_PASSWORD;
 
 
 bool wifiConnected = false;

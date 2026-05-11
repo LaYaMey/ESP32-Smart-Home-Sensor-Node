@@ -2,14 +2,19 @@
 #define API_HANDLER_H
 
 struct ApiConfig {
-  const char* serverIP;   // e.g. "192.168.178.59"
-  const char* sensorId;  // default tag like "livingroom"
+  String serverIP;   // e.g. "192.168.178.59"
+  String sensorId;  // default tag like "livingroom"
 };
 
 void setApiConfig(const ApiConfig& config);
-IPAddress mDNSResolveIP(const char* domain_name);
+IPAddress mDNSResolveIP(const String& domain_name);
 
-// Optional extra tag (e.g. pot = "basil"), pass nullptr if unused
-bool postSensorData(float value, const char* measurement, const char* extraTagKey = nullptr, const char* extraTagValue = nullptr);
+// Optional extra tag (e.g. pot = "basil"), pass emtyString if unused
+bool postSensorData(
+    float value,
+    const String& measurement,
+    const String& extraTagKey = "",
+    const String& extraTagValue = ""
+);
 
 #endif // API_HANDLER_H

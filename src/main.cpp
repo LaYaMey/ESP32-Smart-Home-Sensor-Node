@@ -15,7 +15,7 @@
 
 
 // Server Address or Domain
-const char* server_domain = "orangepi5.local";
+const String server_domain = "orangepi5.local";
 
 // Measurement interval in seconds
 const int interval_seconds = 5 * 60;  // 5 minutes
@@ -116,15 +116,11 @@ void setup() {
 
   IPAddress server_ip = mDNSResolveIP(server_domain);
 
-  static char server_ip_string[16];
-  strcpy(server_ip_string, server_ip.toString().c_str());
-
   static ApiConfig apiConfig = {
-    server_ip_string,             // FastAPI serverIP
+    server_ip.toString(),             // FastAPI serverIP
     "esp_1_larsisZimmer"          // Sensor tag 
   };  
   setApiConfig(apiConfig);
-  displayMessage(server_ip_string);
 }
 
 void loop() {

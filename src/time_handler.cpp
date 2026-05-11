@@ -68,7 +68,7 @@ void displayCurrentTime() {
     strftime(timeStr, sizeof(timeStr), "%H:%M:%S", &timeinfo);
 
     String message = String(now) + "\n" + timeStr;
-    displayMessage(message.c_str());  // ✅ convert String to const char*
+    displayMessage(message);
     
     
     //displayTime(&timeinfo);

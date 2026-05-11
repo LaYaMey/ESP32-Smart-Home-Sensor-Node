@@ -19,7 +19,7 @@ void setupDisplay();
 void displayOff();
 void displayOn();
 void displayValues(float humidity, float temp);
-void displayMessage(const char* message);  // Optional helper for text messages
+void displayMessage(const String& message);  // Optional helper for text messages
 void displayTime(const struct tm* timeinfo);
 void displayAll(float humidity, float temp, const struct tm* timeinfo);
 void updateDisplay(DisplayMode mode, float humidity, float temp, time_t now);
