@@ -2,7 +2,7 @@
 #define API_HANDLER_H
 
 struct ApiConfig {
-  const char* baseUrl;   // e.g. "http://192.168.178.59:8000"
+  const char* serverIP;   // e.g. "192.168.178.59"
   const char* sensorId;  // default tag like "livingroom"
 };
 

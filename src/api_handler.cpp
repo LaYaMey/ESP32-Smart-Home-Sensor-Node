@@ -36,7 +36,8 @@ bool postSensorData(float value, const char* measurement, const char* extraTagKe
   }
 
   HTTPClient http;
-  String url = String(apiConfig.baseUrl) + "/submit";
+  String url = "http://" + String(apiConfig.serverIP) + ":8000/submit";
+
   http.begin(url);
   http.addHeader("Content-Type", "application/json");
 
@@ -60,7 +61,11 @@ bool postSensorData(float value, const char* measurement, const char* extraTagKe
 
   if (responseCode < 200 || responseCode >= 300) {
     signalError(POST_ERROR);
-    displayMessage("API Error");
+    //displayMessage("API Error");
+
+    String msg = "HTTP " + String(responseCode);
+    displayMessage(msg.c_str());
+    delay(5000);
     return false;
   }
   //displayMessage("API Success");

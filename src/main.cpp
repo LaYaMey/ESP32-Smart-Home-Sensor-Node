@@ -14,6 +14,8 @@
 #include "display_handler.h"
 
 
+// Server Address or Domain
+const char* server_domain = "orangepi5.local";
 
 // Measurement interval in seconds
 const int interval_seconds = 5 * 60;  // 5 minutes
@@ -99,14 +101,6 @@ void setup() {
   connectToWiFi();
   unsigned long startWifiAttempt = millis();
 
-  // Configure API
-  static ApiConfig apiConfig = {
-    "http://192.168.178.59:8000",  // FastAPI server
-    "esp_1_larsisZimmer"           // Sensor tag 
-  };  
-  setApiConfig(apiConfig);
-  displayMessage("API configured");
-
   // SHT40 init
   if (!sht4.begin(&Wire)) {
     displayMessage("SHT40 not found");
@@ -119,6 +113,18 @@ void setup() {
   waitForWiFi(&startWifiAttempt);
     
   syncTime();
+
+  IPAddress server_ip = mDNSResolveIP(server_domain);
+
+  static char server_ip_string[16];
+  strcpy(server_ip_string, server_ip.toString().c_str());
+
+  static ApiConfig apiConfig = {
+    server_ip_string,             // FastAPI serverIP
+    "esp_1_larsisZimmer"          // Sensor tag 
+  };  
+  setApiConfig(apiConfig);
+  displayMessage(server_ip_string);
 }
 
 void loop() {
